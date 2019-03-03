@@ -337,7 +337,7 @@ namespace NativePayload_HTTP
                         FakeHeader_onoff_status = _DetectingHTMLValues(_OUTPUT, "myTimeLabel_FakeheaderStatus");
                         if (FakeHeader_onoff_status == ";D") FakeHeader_onoff_status = "xheader-off";
 
-                        /// Detecting FakeheaderStatus is on/off?
+                        /// Detecting FakeheaderMode is 0,1,2?
                         FakeHeaderModetmp = _DetectingHTMLValues(_OUTPUT, "myTimeLabel_FakeHeaderMode");
                         if (FakeHeaderModetmp.Contains(",1")) FakeHeaderMode = "REFERER";
                         if (FakeHeaderModetmp.Contains(",2")) FakeHeaderMode = "COOKIES";  
