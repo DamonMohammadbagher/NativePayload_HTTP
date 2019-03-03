@@ -3,6 +3,11 @@ Data Exfiltration via HTTP Traffic (C# and Shell Script)
 
 this code has two parts: 1.Server-Side and 2.Client-Side
 
+Note:in server-side this code tested by Kali linux only! 
+
+client-side tested by kali 2017-18 and ubuntu 14 also Windos7 and 2012
+
+
 # 1.Server-Side (linux only):
 ./NativePayload_HTTP.sh -exfilwebserver
 
