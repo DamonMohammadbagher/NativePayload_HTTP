@@ -1570,7 +1570,12 @@ else
 	
 	# bug fixed here , i am sorry ;)		
 	# Curl "$LocalhostIPv4" "http://$2:$3/default.aspx?Session=$HOSid" "Sessions.log"	"$Xheaderison"	"$XServerHI" "$CurlDetected"	
+	if  [ -x "$(command -v curl)" ];
+	then
 	nohup curl "http://$2:$3/default.aspx?Session=$HOSid" > "Sessions.log" 2>&1 &
+	else
+	wget "http://$2:$3/default.aspx?Session=$HOSid" -o "DumpedText_by_wget.txt" -O "Sessions.log"
+	fi
 	
 	if [ "$XServerDelay" == "0" ] ;
 	then
