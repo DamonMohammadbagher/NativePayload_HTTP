@@ -6,6 +6,8 @@ this code has two parts: 1.Server-Side and 2.Client-Side
 
 Note:in server-side this code tested by Kali linux only!
 
+Video [1] , Shell Script (server/client side) : https://www.youtube.com/watch?v=vjhubCYFP4c
+
 client-side tested by kali 2017-18 and ubuntu 14.04 also windows7 and 2012
 
 ![](https://github.com/DamonMohammadbagher/NativePayload_HTTP/blob/master/NativePayload_HTTP.png)
