@@ -7,9 +7,10 @@ Note:in server-side this code tested by Kali linux only!
 
 client-side tested by kali 2017-18 and ubuntu 14.04 also windows7 and 2012
 
-video [1] : https://www.youtube.com/watch?v=vjhubCYFP4c
+Video [1] , Shell Script (server/client side) (linux only) : https://www.youtube.com/watch?v=vjhubCYFP4c
 
-video [2] : https://www.youtube.com/watch?v=7MCOko-qy0c
+Video [2] , C# and Script (server/client side) (Windows/linux) : https://www.youtube.com/watch?v=7MCOko-qy0c
+
 
 ![](https://github.com/DamonMohammadbagher/NativePayload_HTTP/blob/master/NativePayload_HTTP.png)
 
