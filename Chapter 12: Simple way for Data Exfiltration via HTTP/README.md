@@ -8,7 +8,7 @@ Note:in server-side this code tested by Kali linux only!
 
 Video [1] , Shell Script (server/client side) (linux only) : https://www.youtube.com/watch?v=vjhubCYFP4c
 
-video [2] , C# and Script (server/client side) (Windows/linux) : https://www.youtube.com/watch?v=7MCOko-qy0c
+Video [2] , C# and Script (server/client side) (Windows/linux) : https://www.youtube.com/watch?v=7MCOko-qy0c
 
 
 client-side tested by kali 2017-18 and ubuntu 14.04 also windows7 and 2012
