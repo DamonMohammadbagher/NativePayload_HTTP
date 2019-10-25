@@ -11,6 +11,11 @@ Video [1] , Shell Script (server/client side) (linux only) : https://www.youtube
 
 Video [2] , C# and Script (server/client side) (Windows/linux) : https://www.youtube.com/watch?v=7MCOko-qy0c
 
+Related Video :
+
+Video [3] , Codes Integration: NativePayload_CSI + NativePayload_HTTP : https://www.youtube.com/watch?v=wwMf2sg1XW0
+
+
 
 ![](https://github.com/DamonMohammadbagher/NativePayload_HTTP/blob/master/NativePayload_HTTP.png)
 
