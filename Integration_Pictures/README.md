@@ -2,3 +2,5 @@
          and Backdoor/Shell connected to server via HTTP Traffic also Shell output Injected 
          to HTTP Header fields.... 
          Note: in this case "NativePayload_HTTP.sh" is (Server-side) tool ;)
+         Video : https://www.youtube.com/watch?v=wwMf2sg1XW0
+         
