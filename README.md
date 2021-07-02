@@ -37,3 +37,5 @@ Example: NativePayload_HTTP.exe  -dumpcmd  192.168.56.1 80
 NativePayload_HTTP (Part1): https://github.com/DamonMohammadbagher/eBook-BypassingAVsByCSharp/blob/master/CH12/Bypassing%20Anti%20Viruses%20by%20C%23.NET%20Programming%20Chapter%2012-Part1.pdf
 
 NativePayload_HTTP (Part2): https://github.com/DamonMohammadbagher/eBook-BypassingAVsByCSharp/blob/master/CH12/Bypassing%20Anti%20Viruses%20by%20C%23.NET%20Programming%20Chapter%2012-Part2.pdf
+
+<p><a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/DamonMohammadbagher/NativePayload_HTTP"/></a></p>
